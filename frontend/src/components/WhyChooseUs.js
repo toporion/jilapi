@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Leaf, Truck, Award, ShieldCheck } from 'lucide-react';
 
 const features = [

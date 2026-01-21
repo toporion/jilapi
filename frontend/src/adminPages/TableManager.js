@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import QRCode from 'react-qr-code';
-import { Plus, Trash2, Printer, Lock, LayoutGrid, Loader } from 'lucide-react';
+import { Plus,Printer, Lock, LayoutGrid, Loader } from 'lucide-react';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';
 

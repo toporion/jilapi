@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 // Added 'Package' to the imports below
-import { TrendingUp, Users, ShoppingCart, DollarSign, AlertTriangle, Loader, BarChart3, Calendar, Package } from 'lucide-react';
+import { TrendingUp,ShoppingCart, DollarSign, AlertTriangle, Loader, BarChart3, Calendar, Package } from 'lucide-react';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';
 
 const AdminHome = () => {

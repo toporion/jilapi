@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Trash2, Shield, Search, CheckCircle, Mail, ChevronLeft, ChevronRight, UserCog, X, Calendar, Hash, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { Trash2, Search, CheckCircle, Mail, ChevronLeft, ChevronRight, X, Calendar, Hash} from 'lucide-react';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';

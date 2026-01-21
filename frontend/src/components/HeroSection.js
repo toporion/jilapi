@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ArrowRight, Star } from 'lucide-react';
 
 const HeroSection = () => {

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Factory, FlaskConical, AlertTriangle, CheckCircle, ArrowRight, Package, Loader, XCircle } from 'lucide-react';
+import { Factory, FlaskConical, AlertTriangle, CheckCircle,  Package, Loader, XCircle } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';
 
 const ProduceIceCream = () => {
-    const { register, handleSubmit, watch, reset, setValue } = useForm();
+    const { register, handleSubmit, watch, reset, } = useForm();
     const [loading, setLoading] = useState(false);
     const axiosSecure = UseAxiosSecure();
     const queryClient = useQueryClient();
