@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  Instagram, 
-  Twitter, 
-  Facebook, 
+import {  
   Send, 
   ArrowUpRight, 
   MapPin, 
@@ -50,13 +47,7 @@ const FunkyAppFooter = () => {
                 </p>
               </div>
               
-              <div className="mt-8 flex gap-3">
-                {[Instagram, Twitter, Facebook].map((Icon, i) => (
-                  <a key={i} href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-[#1a1a2e] hover:scale-110 transition-all duration-300">
-                    <Icon size={20} />
-                  </a>
-                ))}
-              </div>
+            
             </div>
 
             {/* CARD 2: Navigation Pills (Spans 4 cols) */}
@@ -66,7 +57,7 @@ const FunkyAppFooter = () => {
                 <h3 className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4 ml-1">Menu</h3>
                 <nav className="flex flex-wrap gap-2">
                   {['Our Story', 'Flavors', 'Locations', 'Merch', 'Franchise', 'Careers'].map((item) => (
-                    <a key={item} href="#" className="px-4 py-2 rounded-full bg-white/5 text-gray-300 hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 text-sm font-medium flex items-center gap-1 group">
+                    <a key={item} href="www.toporion.net" className="px-4 py-2 rounded-full bg-white/5 text-gray-300 hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 text-sm font-medium flex items-center gap-1 group">
                       {item}
                       <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-2 group-hover:ml-0 transition-all duration-300" />
                     </a>
@@ -120,9 +111,9 @@ const FunkyAppFooter = () => {
               © 2025 SweetScoop. Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> by You.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">Cookies</a>
+              <a href="www.toporion.net" className="text-xs text-gray-500 hover:text-white transition-colors">Privacy</a>
+              <a href="www.toporion.net" className="text-xs text-gray-500 hover:text-white transition-colors">Terms</a>
+              <a href="www.toporion.net" className="text-xs text-gray-500 hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
 
