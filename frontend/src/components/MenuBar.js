@@ -55,7 +55,7 @@ const MenuBar = () => {
                                 <IceCream className="w-6 h-6 text-pink-500" />
                             </div>
                             <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent tracking-tight">
-                                SweetScoop
+                                jilapi
                             </span>
                         </div>
 

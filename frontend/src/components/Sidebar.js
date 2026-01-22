@@ -118,7 +118,7 @@ const Sidebar = () => {
                     <IceCream size={24} className="text-white" />
                 </div>
                 <h1 className="text-lg font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-cyan-400">
-                    SWEET<span className="text-white">SCOOP</span>
+                    Jila<span className="text-white">pi</span>
                 </h1>
             </div>
 
