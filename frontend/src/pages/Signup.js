@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { User, Mail, Lock, Camera, ArrowRight, Sparkles, Eye, EyeOff } from 'lucide-react';
-import axios from 'axios';
+
 import UseAxiosPublic from '../hooks/UseAxiosPublic';
 
 const Signup = () => {
@@ -14,12 +14,11 @@ const Signup = () => {
         register, 
         handleSubmit, 
         formState: { errors, isSubmitting },
-        watch,
+    
         reset
     } = useForm();
 
-    // Watch the file input to generate preview
-    const fileInput = watch("profileImage");
+ 
 
     // Handle Image Preview Logic
     const handleImageChange = (e) => {

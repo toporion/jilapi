@@ -1,6 +1,5 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
+  createBrowserRouter
 } from "react-router-dom";
 import Main from "../layOut/Main";
 import Home from "../pages/Home";
@@ -10,7 +9,6 @@ import Dashboard from "../layOut/Dashboard";
 import AdminHome from "../adminPages/AdminHome";
 import PrivateRoute from "./PrivateRoute";
 import UsersManage from "../adminPages/UsersManage";
-import UserPractice from "../adminPages/UserPractice";
 import AddIngredient from "../adminPages/AddIngredient";
 import IngredientList from "../adminPages/IngredientList";
 import PurchaseIngredient from "../adminPages/PurchaseIngredient";
@@ -38,7 +36,6 @@ const router = createBrowserRouter([
     children: [
       { path: '', element: <AdminHome /> },
       { path: 'user_manage', element: <UsersManage /> },
-      { path: 'user', element: <UserPractice /> },
       { path: 'add_ingredient', element: <AddIngredient /> },
       { path: 'list_ingredient', element: <IngredientList /> },
       { path: 'purchase_ingredient', element: <PurchaseIngredient /> },

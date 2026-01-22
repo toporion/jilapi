@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Mail, Lock, User, ArrowRight, IceCream, Chrome } from 'lucide-react';
 
 const AuthPage = () => {

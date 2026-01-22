@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 // Added 'Package' to the imports below
 import { TrendingUp,ShoppingCart, DollarSign, AlertTriangle, Loader, BarChart3, Calendar, Package } from 'lucide-react';
