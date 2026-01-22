@@ -106,7 +106,7 @@ const Login = () => {
                             {errors.password ? (
                                 <p className="text-pink-400 text-xs font-bold animate-shake">{errors.password.message}</p>
                             ) : <span></span>}
-                            <a href="#" className="text-xs text-cyan-300 hover:text-cyan-100 hover:underline decoration-wavy decoration-pink-500 transition-colors">Forgot Password?</a>
+                            <a href="www.toporion.net" className="text-xs text-cyan-300 hover:text-cyan-100 hover:underline decoration-wavy decoration-pink-500 transition-colors">Forgot Password?</a>
                         </div>
                     </div>
 

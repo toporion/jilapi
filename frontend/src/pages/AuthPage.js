@@ -101,7 +101,7 @@ const AuthPage = () => {
             {/* Forgot Password (Login Only) */}
             {isLogin && (
                 <div className="flex justify-end">
-                    <a href="#" className="text-sm font-semibold text-pink-500 hover:text-pink-600">Forgot Password?</a>
+                    <a href="www.toporion.net" className="text-sm font-semibold text-pink-500 hover:text-pink-600">Forgot Password?</a>
                 </div>
             )}
 
