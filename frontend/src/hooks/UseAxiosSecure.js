@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const UseAxiosSecure = () => {
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:8080/api/',
+    baseURL: 'https://jilapi-dx6c.vercel.app/api/',
   });
 
   // Add a request interceptor
