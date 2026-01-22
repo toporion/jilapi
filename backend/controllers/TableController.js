@@ -123,21 +123,39 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
-// Add this function
+
+
 const getPublicMenu = async (req, res) => {
     try {
-        // Only fetch items that have Stock AND a Selling Price
-        const menuItems = await ProductModel.find({
-            currentStock: { $gt: 0 },
-            sellingPrice: { $gt: 0 }
-        }).select('productName sellingPrice unit currentStock');
-        // .select() ensures we don't send "productionCost" to customers (Secret!)
+        console.log("---------------- DEBUG START ----------------");
+        
+        // 1. Fetch EVERYTHING (No .select, No filters) to see if image exists
+        const menuItems = await ProductModel.find({}); 
 
-        res.status(200).json({ success: true, data: menuItems });
+        console.log("First Item from DB:", menuItems[0]); 
+        // ^ LOOK AT YOUR TERMINAL. Does this log show the 'image' field?
+
+        const formattedItems = menuItems.map(item => ({
+            _id: item._id,
+            productName: item.productName,
+            sellingPrice: item.sellingPrice,
+            unit: item.unit,
+            currentStock: item.currentStock,
+            // 2. Direct access. No fancy logic yet.
+            image: item.image 
+        }));
+
+        console.log("Sending to Frontend:", formattedItems[0]);
+        console.log("---------------- DEBUG END ----------------");
+
+        res.status(200).json({ success: true, data: formattedItems });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ success: false, message: "Error fetching menu" });
     }
 };
+
+// ... keep your other exports (addTable, verifyPasscode, etc.)
 
 // Check status of a specific order
 const getOrderStatus = async (req, res) => {

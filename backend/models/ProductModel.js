@@ -12,7 +12,7 @@ const productSchema = new Schema({
     // Financials
     productionCostPerUnit: { type: Number, required: true },
     sellingPrice: { type: Number, default: 0 },
-
+    image: { type: String, default: "" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'users' }
 }, { timestamps: true })
 

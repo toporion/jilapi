@@ -101,4 +101,59 @@ const updateSellingPrice = async (req, res) => {
     }
 };
 
-module.exports = { produceIceCream, getProducts,updateSellingPrice };
+const getPublicMenu = async (req, res) => {
+    try {
+        // Fetch products and populate the 'recipeId' to get the image from the recipe
+        const menuItems = await ProductModel.find({ 
+            currentStock: { $gt: 0 }, 
+            sellingPrice: { $gt: 0 } 
+        })
+        .populate('recipeId', 'image') // <--- This pulls the image from the recipe!
+        .select('productName sellingPrice unit currentStock recipeId image'); 
+
+        // Map the result to ensure image is available at the top level
+        const formattedItems = menuItems.map(item => ({
+            _id: item._id,
+            productName: item.productName,
+            sellingPrice: item.sellingPrice,
+            unit: item.unit,
+            // Use Product image if exists, otherwise fallback to Recipe image, otherwise placeholder
+            image: item.image || item.recipeId?.image || "https://via.placeholder.com/300?text=No+Image"
+        }));
+
+        res.status(200).json({ success: true, data: formattedItems });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error fetching menu" });
+    }
+};
+
+const updateProductDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { sellingPrice } = req.body;
+
+        let updateData = { sellingPrice };
+
+        // If user uploaded a new photo, save it
+        if (req.file) {
+            updateData.image = req.file.path; 
+        }
+
+        const updatedProduct = await ProductModel.findByIdAndUpdate(
+            id, 
+            updateData, 
+            { new: true }
+        );
+
+        res.status(200).json({ 
+            success: true, 
+            message: "Product details updated", 
+            data: updatedProduct 
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Error updating product" });
+    }
+};
+module.exports = { produceIceCream, getProducts,updateSellingPrice,getPublicMenu,updateProductDetails };

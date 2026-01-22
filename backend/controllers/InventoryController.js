@@ -89,46 +89,74 @@ const getIngreDientById = async (req, res) => {
 }
 const updateIngredient = async (req, res) => {
     try {
-
         const { id } = req.params;
-        const { name, category, unit, minStockAlert, itemCode } = req.body
-        const ingredient = await IngredientModel.findOne({ itemCode })
+        const { name, category, unit, minStockAlert, itemCode } = req.body;
+
+        // Check for duplicate itemCode BUT exclude the current ingredient ID
+        const ingredient = await IngredientModel.findOne({ 
+            itemCode, 
+            _id: { $ne: id } // <--- CRITICAL FIX
+        });
+
         if (ingredient) {
             return res.status(403).json({
-                success: false, message: "ingredient already exist"
-            })
-
+                success: false, message: "Item code already exists on another ingredient"
+            });
         }
+
         let updateData = {
             name,
             category,
             unit,
             minStockAlert,
             itemCode
-        }
-        if (req.file) {
-            updateData.image = req.file.path
+        };
 
+        if (req.file) {
+            updateData.image = req.file.path;
         }
+
         const updatedIngredient = await IngredientModel.findByIdAndUpdate(
             id,
             updateData,
             { new: true }
-        )
+        );
 
         res.status(200).json({
             success: true,
-            message: "ingredient update successfully",
+            message: "Ingredient updated successfully",
             data: updatedIngredient
-        })
+        });
 
     } catch (error) {
-        console.log('see the error', error)
+        console.log('see the error', error);
         res.status(500).json({
             success: false, message: "internal server error"
-        })
+        });
     }
-}
+};
+
+// ✅ NEW DELETE FUNCTION
+const deleteIngredient = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedIngredient = await IngredientModel.findByIdAndDelete(id);
+
+        if (!deletedIngredient) {
+            return res.status(404).json({ success: false, message: "Ingredient not found" });
+        }
+
+        // Optional: Delete the image file if it exists locally
+        // if (deletedIngredient.image) fs.unlinkSync(deletedIngredient.image);
+
+        res.status(200).json({
+            success: true,
+            message: "Ingredient deleted successfully"
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error deleting ingredient" });
+    }
+};
 
 const purchaseIngredient = async (req, res) => {
     try {
@@ -175,4 +203,4 @@ const purchaseIngredient = async (req, res) => {
         })
     }
 }
-module.exports = { addIngredient, getIngredients, getIngreDientById, updateIngredient,purchaseIngredient };
+module.exports = { addIngredient, getIngredients, getIngreDientById, updateIngredient,purchaseIngredient,deleteIngredient };

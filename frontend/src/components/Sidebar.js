@@ -1,15 +1,43 @@
-
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, IceCream, ShoppingBag, Users, Settings, LogOut } from 'lucide-react';
+import { 
+    LayoutDashboard, 
+    IceCream, 
+    Users, 
+    LogOut, 
+    CreditCard, 
+    ChefHat, 
+    QrCode, 
+    Package, 
+    ShoppingCart, 
+    UtensilsCrossed, 
+    BookOpen,
+    PlusCircle
+} from 'lucide-react';
 
 const Sidebar = () => {
     
     const navItems = [
+        // 1. MAIN
         { path: '/admin', name: 'Overview', icon: <LayoutDashboard size={20} /> },
-        { path: '/admin/menu', name: 'Menu', icon: <IceCream size={20} /> },
-        { path: '/admin/orders', name: 'Orders', icon: <ShoppingBag size={20} /> },
+        
+        // 2. SALES & OPERATIONS (The "Live" stuff)
+        { path: '/admin/pos', name: 'POS Terminal', icon: <CreditCard size={20} /> },
+        { path: '/admin/kitchen', name: 'Kitchen Monitor', icon: <ChefHat size={20} /> },
+        { path: '/admin/tables', name: 'Tables & QR', icon: <QrCode size={20} /> },
+
+        // 3. INVENTORY & PRODUCTION (The "Back Office" stuff)
+        { path: '/admin/product_stock', name: 'Finished Stock', icon: <IceCream size={20} /> },
+        { path: '/admin/produce', name: 'Production', icon: <UtensilsCrossed size={20} /> },
+        { path: '/admin/add_recipe', name: 'Add Recipe', icon: <BookOpen size={20} /> },
+        { path: '/admin/recipe_list', name: 'Recipes', icon: <BookOpen size={20} /> },
+        
+        // 4. SUPPLY CHAIN
+        { path: '/admin/list_ingredient', name: 'Ingredients', icon: <Package size={20} /> },
+        { path: '/admin/purchase_ingredient', name: 'Purchase', icon: <ShoppingCart size={20} /> },
+        { path: '/admin/add_ingredient', name: 'Add Item', icon: <PlusCircle size={20} /> },
+
+        // 5. ADMIN
         { path: '/admin/user_manage', name: 'Users', icon: <Users size={20} /> },
-        { path: '/admin/settings', name: 'Config', icon: <Settings size={20} /> },
     ];
 
     return (
@@ -26,14 +54,14 @@ const Sidebar = () => {
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 px-4 py-6 space-y-3 overflow-y-auto custom-scrollbar">
-                {navItems.map((item) => (
+            <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
+                {navItems.map((item, index) => (
                     <NavLink
                         key={item.path}
                         to={item.path}
                         end={item.path === '/admin'}
                         className={({ isActive }) => `
-                            relative flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 group overflow-hidden
+                            relative flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 group overflow-hidden
                             ${isActive 
                                 ? 'bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/20' 
                                 : 'text-slate-400 hover:bg-white/5 hover:text-white'
@@ -46,7 +74,7 @@ const Sidebar = () => {
                         <span className={`relative z-10 transition-transform duration-300 ${item.path === window.location.pathname ? 'scale-110' : 'group-hover:scale-110'}`}>
                             {item.icon}
                         </span>
-                        <span className="relative z-10 font-bold text-sm tracking-wide">{item.name}</span>
+                        <span className="relative z-10 font-bold text-xs uppercase tracking-wide">{item.name}</span>
                     </NavLink>
                 ))}
             </nav>

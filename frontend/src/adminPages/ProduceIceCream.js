@@ -1,6 +1,6 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Factory, FlaskConical, AlertTriangle, CheckCircle,  Package, Loader, XCircle } from 'lucide-react';
+import { Factory, FlaskConical, AlertTriangle, CheckCircle, Package, Loader, XCircle } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';
@@ -45,20 +45,26 @@ const ProduceIceCream = () => {
     let isStockSufficient = true;
 
     const requirementList = selectedRecipe?.ingredients.map(ing => {
-        // Find current stock from the ingredients list
-        const stockItem = ingredientsStock?.find(i => i._id === ing.ingredientId);
+        // 👇 SAFE ID EXTRACTION: Handle both Populated Object and String ID
+        const targetId = ing.ingredientId?._id || ing.ingredientId;
+
+        // Find current stock from the master ingredients list
+        const stockItem = ingredientsStock?.find(i => i._id === targetId);
         const currentStock = stockItem?.currentStock || 0;
         
         const requiredQty = ing.quantity * batchRatio;
-        const missing = currentStock < requiredQty;
         
+        // Check if missing
+        const missing = currentStock < requiredQty;
         if (missing) isStockSufficient = false;
 
         return {
-            name: ing.ingredientName,
+            // Get name from populated object if available
+            name: ing.ingredientId?.name || "Unknown Ingredient",
             required: requiredQty,
             available: currentStock,
-            unit: ing.unit,
+            // Get unit from populated object if available
+            unit: ing.ingredientId?.unit || "",
             missing: missing
         };
     }) || [];
@@ -85,7 +91,7 @@ const ProduceIceCream = () => {
             if (res.data.success) {
                 // Refresh both stock lists (Ingredients went down, Products went up)
                 await queryClient.invalidateQueries(['ingredients-stock-check']);
-                await queryClient.invalidateQueries(['products-list']); // We will build this list next
+                await queryClient.invalidateQueries(['products-list']); 
                 
                 Swal.fire({
                     title: "Production Complete!",

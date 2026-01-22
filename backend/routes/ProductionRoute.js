@@ -1,4 +1,5 @@
-const { produceIceCream, getProducts, updateSellingPrice } = require('../controllers/ProductionController');
+const { produceIceCream, getProducts, updateSellingPrice, updateProductDetails } = require('../controllers/ProductionController');
+const fileUploader = require('../middlewares/FileUploader');
 const verifyToken = require('../middlewares/VerifyToken');
 
 const router = require('express').Router()
@@ -7,6 +8,7 @@ const router = require('express').Router()
 router.post('/production/produce', verifyToken, produceIceCream);
 
 // View Finished Stock (List)
-router.get('/products', verifyToken, getProducts);
+router.get('/products', getProducts);
 router.put('/product/update_price/:id', verifyToken, updateSellingPrice);
+router.put('/product/update/:id', verifyToken, fileUploader.single('image'), updateProductDetails);
 module.exports = router

@@ -19,6 +19,7 @@ import POS from "../adminPages/POS";
 import TableManager from "../adminPages/TableManager";
 import CustomerMenu from "../pages/CustomerMenu";
 import KitchenOrders from "../adminPages/KitchenOrders";
+import RecipeList from "../adminPages/RecipeList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +45,8 @@ const router = createBrowserRouter([
       { path: 'product_stock', element: <ProductList /> },
       { path: 'pos', element: <POS /> },
       { path: 'tables', element: <TableManager /> },
-      { path: 'kitchen', element: <KitchenOrders/> }
+      { path: 'kitchen', element: <KitchenOrders/> },
+      { path: 'recipe_list', element: <RecipeList /> },
 
     ]
   }
