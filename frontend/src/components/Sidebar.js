@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import UseAuth from '../hooks/UseAuth'; // 👈 Import Auth Hook
 import { 
     LayoutDashboard, 
@@ -16,8 +16,9 @@ import {
 } from 'lucide-react';
 
 const Sidebar = () => {
-    const { user, logout } = UseAuth(); // 👈 Get current user info
+    const { user, logOutUser: logout } = UseAuth(); // 👈 Get current user info
     const userRole = user?.role || 'user'; 
+    const navigate=useNavigate();
 
     // Define roles that can see specific items
     // 'staff' only sees POS and Kitchen
@@ -108,7 +109,11 @@ const Sidebar = () => {
 
     // Filter items based on role
     const filteredNavItems = navItems.filter(item => item.roles.includes(userRole));
+    const handleLogout =()=>{
+        logout();
+        navigate('/login');
 
+    }
     return (
         <aside className="hidden md:flex flex-col w-64 h-[95vh] fixed left-4 top-1/2 -translate-y-1/2 rounded-3xl bg-[#1a103c]/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] z-50 overflow-hidden">
             
@@ -150,7 +155,7 @@ const Sidebar = () => {
             {/* Logout */}
             <div className="p-4 bg-gradient-to-t from-black/40 to-transparent">
                 <button 
-                    onClick={logout} // 👈 Assuming UseAuth provides logout function
+                    onClick={handleLogout} // 👈 Assuming UseAuth provides logout function
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white/5 border border-white/5 hover:bg-red-500/20 hover:border-red-500/30 hover:text-red-400 text-slate-400 transition-all duration-300 group"
                 >
                     <LogOut size={18} className="group-hover:-rotate-12 transition-transform" />
